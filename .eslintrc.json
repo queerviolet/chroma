@@ -4,6 +4,10 @@
 	"extends": "fullstack",
 	"rules": {
 		"semi": 0,
+		"react/jsx-wrap-multilines": 0,
+		"jsx-quotes": 0,
+		"id-length": 0,
+		"no-confusing-arrow": 0,
 		"new-cap": [1, { "capIsNewExceptions": ["Router"] }]
 	}
 }

@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
+import Emojis from './components/emojis.jsx'
 import {me} from './store'
 
 /**
@@ -33,7 +34,7 @@ class Routes extends Component {
                 </Switch>
             }
             {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
+            <Route component={Emojis} />
           </Switch>
         </Main>
       </Router>

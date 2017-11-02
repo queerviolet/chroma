@@ -19,3 +19,55 @@ body {
     display: inline-block;
   }
 }
+
+.emojis {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0; padding: 0;
+  justify-content: center;  
+}
+
+.emojis-item {
+  position: relative;
+  margin: 10px;  
+  transition: transform 113ms;
+  user-select: none;
+}
+
+.emojis-item:hover {
+  transform: scale(2);
+}
+
+.emojis-item-emoji {
+  font-size: 32pt;
+}
+
+.emojis-item-emoji:hover {
+  animation-name: psychedelic;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes psychedelic {
+  0% { filter: hue-rotate(0deg) }
+  50% { filter: hue-rotate(180deg) }
+  100% { filter: hue-rotate(360deg) }
+}
+
+.emojis-item-badge {
+  position: absolute;
+  font-family: sans-serif;
+  top: -5px; right: -5px;
+  font-size: 10pt;
+  background-color: red;
+  border-radius: 3px;
+  padding: 2px;
+  color: white;
+  min-width: 12px;
+  height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

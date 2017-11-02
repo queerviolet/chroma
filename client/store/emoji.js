@@ -10,8 +10,9 @@ export const loadEmojis = () =>
   dispatch => axios.get('/api/emoji')
     .then(({data: emoji}) => dispatch(stockEmoji(emoji)))    
 
-export default function reducer(state=[], {type, emoji}) {
-  if (type === STOCK_EMOJI)
-    return emoji
+export default function reducer(state = [], {type, emoji}) {
+  if (type === STOCK_EMOJI) return emoji.map(
+    e =>
+      ({...e, id: String(e.id) }))
   return state
 }

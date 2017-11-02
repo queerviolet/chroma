@@ -7,13 +7,14 @@ import history from './history'
 import {Main, Login, Signup, UserHome} from './components'
 import Emojis from './components/emojis.jsx'
 import {me} from './store'
+import {loadCart} from './store/cart'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
   componentDidMount () {
-    this.props.loadInitialData()
+    this.props.loadInitialData()    
   }
 
   render () {
@@ -57,6 +58,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      // dispatch(loadCart())
     }
   }
 }

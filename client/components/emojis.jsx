@@ -5,27 +5,29 @@ import {loadEmojis} from '../store/emoji'
 import {addToCartById} from '../store/cart'
 
 const Badge = connect(
-  ({cart: {byId}}) => ({cart: byId}),
+  ({cart}, {emoji: {id}}) => ({
+    qty: cart.getIn([id, 'qty'], 0)
+  }),
   (dispatch, {emoji: {id}}) => ({
     onClick() {
       return dispatch(addToCartById(id, -1))
     }
   })
 )(
-  ({emoji: {id}, cart, onClick}) =>
-    cart[id] && cart[id].qty
-        ? <span className='emojis-item-badge' onClick={onClick}>{cart[id].qty}</span>
-        : null
+  ({qty, onClick}) =>
+    qty
+      ? <span className='emojis-item-badge' onClick={onClick}>{qty}</span>
+      : null
 )
 
-const Emoji = ({emoji, cart, onClick}) =>
+const Emoji = ({emoji, onClick}) =>
   <li className='emojis-item'>
     <div className='emojis-item-emoji'>
       <a data-emoji-id={emoji.id} onClick={onClick}>
         {emoji.emoji}
       </a>
     </div>
-    <Badge emoji={emoji} />    
+    <Badge emoji={emoji} />
   </li>
 
 export class Emojis extends React.Component {
@@ -48,11 +50,11 @@ export class Emojis extends React.Component {
 }
 
 export default connect(
-  ({emoji, cart}) => ({emoji, cart}),
+  ({emoji}) => ({emoji}),
   {
     loadEmojis,
     onClick(evt) {
-      const id = +evt.target.dataset.emojiId
+      const id = evt.target.dataset.emojiId
       return addToCartById(id)
     }
   })(Emojis)

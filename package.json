@@ -29,6 +29,7 @@
     "express-session": "^1.15.1",
     "gemoji": "^4.2.0",
     "history": "^4.6.3",
+    "immutable": "^3.8.2",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",

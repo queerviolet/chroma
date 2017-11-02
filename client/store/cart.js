@@ -5,27 +5,41 @@ export const stockCart = cart => ({
   type: STOCK_CART, cart
 })
 
+export const UPDATE_QTY = 'UPDATE_QTY'
+export const updateQty = (emojiId, delta) => ({
+  type: UPDATE_QTY, emojiId, delta
+})
+
 export const loadCart = () =>
   dispatch => axios.get('/api/cart')
     .then(({data: cart}) => dispatch(stockCart(cart)))
 
 export const addToCartById = (emojiId, delta = 1) =>
-  dispatch => axios.put('/api/cart', {emojiId, delta})
-    .then(() => dispatch(loadCart()))
+  dispatch => {
+    dispatch(updateQty(emojiId, delta))
+    return axios.put('/api/cart', {emojiId, delta})
+  }
 
-export default function reducer(state = {
-  cart: {},
-  byId: {}
-}, {type, cart}) {
+
+const {Map, fromJS} = require('immutable')
+
+export default function reducer(state = Map(), {type, cart, emojiId, delta}) {
+  if (type === '@@INIT') {
+    return fromJS(state)
+  }
+
   if (type === STOCK_CART) {
-    return {
-      cart,
-      byId: cart.emojis.reduce((byId, emoji) => {
-        byId[emoji.id] = Object.assign({},
-          emoji, {qty: emoji.line_item.qty})
-        return byId
-      }, {})
-    }
+    return Map().withMutations(C =>
+      cart.emojis.forEach(emoji => {
+        C.set(String(emoji.id), fromJS(emoji))
+        C.setIn([String(emoji.id), 'qty'], emoji.line_item.qty)
+      }))
+  }
+
+  if (type === UPDATE_QTY) {
+    console.log('emojiId=', typeof emojiId)
+    console.log(state.updateIn([emojiId, 'qty'], 0, qty => qty + delta).getIn([emojiId, 'qty']))
+    return state.updateIn([emojiId, 'qty'], 0, qty => qty + delta)
   }
 
   return state

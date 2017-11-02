@@ -15,6 +15,9 @@ const store = createStore(reducer,
   localStorage.store ?  JSON.parse(localStorage.store) : undefined,
   middleware)
 
-store.subscribe(() => localStorage.store = JSON.stringify(store.getState()))
+window.store = store
+
+store.subscribe(() =>
+  localStorage.store = JSON.stringify(store.getState()))
 export default store
 export * from './user'

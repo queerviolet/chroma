@@ -34,7 +34,7 @@ git checkout -b deploy
 trap cleanup_at_exit EXIT
 
 # webpack will run in "production mode"
-npx webpack -p
+npx webpack
 
 # "force" add the otherwise gitignored build files
 git add -f public/bundle.js public/bundle.js.map

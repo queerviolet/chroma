@@ -11,7 +11,7 @@ class EmojiNotFound extends Error {
 
 module.exports = require('express').Router()
   .param('name', (req, res, next) =>
-    Emoji.findOne({where: {name: req.params.name}})
+    Emoji.oneByName(req.params.name)
       .then(emoji => {
         if (!emoji)
           return next(new EmojiNotFound(req.params.name))

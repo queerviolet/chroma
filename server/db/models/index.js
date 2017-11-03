@@ -2,6 +2,7 @@
 
 const User = require('./user')
 const Emoji = require('./emoji')
+
 const Order = require('./order')
 const LineItem = require('./lineitem')
 

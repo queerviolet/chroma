@@ -1,12 +1,19 @@
 const db = require('.')
+    , {Promise} = db
     , {Emoji} = require('./models')
-const emoji = require('gemoji')
 
+// Source data. This gem has all
+// emoji by name!
+const gemoji = require('gemoji')
+    , {unicode: emoji} = gemoji
+  
 db.sync({force: true})
   .then(() => 
-    Promise.all(
-      Object.values(emoji.name)
-        .map(data => Emoji.create(data))
-    ))
+    Promise.map(
+      Object.keys(emoji),
+      code => Emoji.create(
+        Object.assign(emoji[code])
+      ))
+    )
   .then(emoji => console.log(`seeded ${emoji.length} emojis ok.`))
   .catch(console.error)

@@ -37,8 +37,6 @@ export default function reducer(state = Map(), {type, cart, emojiId, delta}) {
   }
 
   if (type === UPDATE_QTY) {
-    console.log('emojiId=', typeof emojiId)
-    console.log(state.updateIn([emojiId, 'qty'], 0, qty => qty + delta).getIn([emojiId, 'qty']))
     return state.updateIn([emojiId, 'qty'], 0, qty => qty + delta)
   }
 

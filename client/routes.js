@@ -1,13 +1,19 @@
+'use strict'
+
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
-import Emojis from './components/emojis.jsx'
+import {
+  Main,
+  Login, Signup,
+  UserHome,
+  Emojis } from './components'
 import {me} from './store'
 import {loadCart} from './store/cart'
+import {loadEmoji} from './store/emoji'
 
 /**
  * COMPONENT
@@ -58,7 +64,8 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
-      // dispatch(loadCart())
+      dispatch(loadCart())
+      dispatch(loadEmoji())
     }
   }
 }

@@ -6,7 +6,7 @@ export const stockEmoji = emoji => ({
   type: STOCK_EMOJI, emoji
 })
 
-export const loadEmojis = () =>
+export const loadEmoji = () =>
   dispatch => axios.get('/api/emoji')
     .then(({data: emoji}) => dispatch(stockEmoji(emoji)))    
 

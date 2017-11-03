@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter|Inconsolata|Indie+Flower|Eater|Open+Sans|Rozha+One|Saira+Semi+Condensed');
+
 body {
   font-family: sans-serif;
 
@@ -47,7 +49,7 @@ body {
   animation-name: psychedelic;
   animation-duration: 4s;
   animation-iteration-count: infinite;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);  
 }
 
 @keyframes psychedelic {
@@ -70,4 +72,61 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.emoji-categories {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.emoji-category-header {
+  font-size: 48pt;
+  font-weight: normal;
+  text-align: center;
+  position: sticky; 
+  top: 10px;
+  z-index: 1000;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.emoji-category {
+  position: sticky;
+}
+
+.emoji-category[data-category="people"] > .emoji-category-header {
+  font-family: 'Rozha One', serif;
+  color: gold;
+}
+
+.emoji-category[data-category="nature"] > .emoji-category-header {
+  font-family: 'Indie Flower', serif;
+  color: green;
+}
+
+.emoji-category[data-category="foods"] > .emoji-category-header {
+  font-family: 'Bitter', serif;
+  color: red;
+  top: 10px;
+}
+
+.emoji-category[data-category="activity"] > .emoji-category-header {
+  font-family: 'Saira Semi Condensed', sans-serif;
+  color: purple;
+}
+
+.emoji-category[data-category="symbols"] > .emoji-category-header {
+  font-family: 'Inconsolata', monospace;
+  color: darkslateblue;
+}
+
+.emoji-category[data-category="objects"] > .emoji-category-header {
+  font-family: 'Open Sans', monospace;
+  color: orange;
+}
+
+.emoji-category[data-category="flags"] > .emoji-category-header {
+  font-family: 'Eater', monospace;
+  color: blue;
 }
